@@ -1,3 +1,6 @@
 [submodule "catkin_ws/src/nesfr3_simulations"]
 	path = catkin_ws/src/nesfr3_simulations
 	url = git@github.com:wom-ai/nesfr3_simulations.git
+[submodule "catkin_ws/src/nesfr3"]
+	path = catkin_ws/src/nesfr3
+	url = git@github.com:wom-ai/nesfr3.git
