@@ -8,15 +8,15 @@ docker stop nesfr3
 echo "Removing nesfr3 container"
 docker rm nesfr3
 
-# Download the VOC dataset for INT8 Calibration
-#DATA_DIR=VOCdevkit
-#if [ -d "$DATA_DIR" ]; then
-#	echo "$DATA_DIR has already been downloaded"
-#else
-#	echo "Downloading VOC dataset"
-#	wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
-#	tar -xf VOCtest_06-Nov-2007.tar
-#fi
+# Download the HRNet dataset for INT8 Calibration
+DATA_DIR=HRNetData
+if [ -d "$DATA_DIR" ]; then
+	echo "$DATA_DIR has already been downloaded"
+else
+	echo "Downloading HRNet dataset"
+    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1AHb0TSp1O2PGarZW_MO2nF-ygQY2_fm7' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1AHb0TSp1O2PGarZW_MO2nF-ygQY2_fm7" -O hrnet.zip && rm -rf /tmp/cookies.txt
+	unzip hrnet.zip -d $DATA_DIR
+fi
 
 if [ ! -z $(docker images -q nesfr3:v201912260) ]; then
 	echo "Dockerfile has already been built"
