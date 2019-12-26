@@ -3,25 +3,31 @@ NESFR3 Docker Environment
 
 ## Docker
 
-### Setup environment
+### Setup or update environment
 ```
 $ ./setup_environment.sh
 ```
 
-### Start stopped container
+### If container is stopped
 ```
-$ ./run_container.sh
+### Restart stopped container
+$ ./start_container.sh
+### Execute interactive `bash`
+$ docker exec -it nesfr3 bash
 ```
 
-If there's `OCI runtime create failed: ` error
+### Installing dependencies and catkin_make
+```
+$ cd catkin_ws
+$ rosdep install --from-paths src --ignore-src -r -y
+$ catkin_make
+
+```
+
+### If there's `OCI runtime create failed: ` error
 ```
 $ sudo rm -rf /tmp/.docker.xauth/
 $ touch /tmp/.docker.xauth
-```
-
-### Execute interactive `bash`
-```
-$ docker exec -it nesfr_185 bash
 ```
 
 ## Trouble Shooting
