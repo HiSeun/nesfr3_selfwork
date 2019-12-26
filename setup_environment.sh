@@ -18,12 +18,13 @@ else
 	unzip hrnet.zip -d $DATA_DIR
 fi
 
-if [ ! -z $(docker images -q nesfr3:v201912260) ]; then
+NESFR3_VERSION=v201912260
+if [ ! -z $(docker images -q nesfr3:$NESFR3_VERSION) ]; then
 	echo "Dockerfile has already been built"
 else
 	echo "Building nesfr3 image"
-	docker build -f Dockerfile --tag=nesfr3:v201912260 .
+	docker build -f Dockerfile --tag=nesfr3:$NESFR3_VERSION .
 fi
 
-docker run --gpus all -it --name nesfr3 -e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -v `pwd`:/mnt -e XAUTHORITY=$XAUTH -e QT_X11_NO_MITSHM=1 -e NVIDIA_DRIVER_CAPABILITIES=all nesfr3:v201912260
+docker run --gpus all -it --name nesfr3 -e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -v `pwd`:/mnt -e XAUTHORITY=$XAUTH -e QT_X11_NO_MITSHM=1 -e NVIDIA_DRIVER_CAPABILITIES=all nesfr3:$NESFR3_VERSION
 
