@@ -3,7 +3,9 @@ XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
+echo "Stopping nesfr3 container"
 docker stop nesfr3
+echo "Removing nesfr3 container"
 docker rm nesfr3
 
 # Download the VOC dataset for INT8 Calibration
@@ -19,7 +21,7 @@ docker rm nesfr3
 if [ ! -z $(docker images -q nesfr3:v201912260) ]; then
 	echo "Dockerfile has already been built"
 else
-	echo "Building docker image"
+	echo "Building nesfr3 image"
 	docker build -f Dockerfile --tag=nesfr3:v201912260 .
 fi
 
