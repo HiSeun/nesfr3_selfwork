@@ -1,7 +1,14 @@
 # NESFR3
 NESFR3 Docker Environment
 
+
 ## Docker
+
+### Clone the repository
+```
+### DO NOT FORGET to include --recurse-submodules when cloning
+$ git clone --recurse-submodules git@github.com:wom-ai/nesfr3_workspace.git
+```
 
 ### Setup or update environment
 ```
