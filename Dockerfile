@@ -18,5 +18,7 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86
 RUN apt-get install -y python-pip &&\
         pip --no-cache-dir install torch torchvision yacs
 
+RUN apt-get install -y ros-melodic-joy ros-melodic-cartographer-ros
+
 WORKDIR /mnt
 CMD /bin/bash
