@@ -15,5 +15,8 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86
         apt-get update &&\
         apt-get -y install cuda-toolkit-10-2
 
+RUN apt-get install -y python-pip &&\
+        pip --no-cache-dir install torch torchvision yacs
+
 WORKDIR /mnt
 CMD /bin/bash
