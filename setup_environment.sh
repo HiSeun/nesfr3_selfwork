@@ -21,7 +21,7 @@ else
 	unzip hrnet-002.zip -d $DATA_DIR
 fi
 
-NESFR3_VERSION=v201912301
+NESFR3_VERSION=v201912310
 if [ ! -z $(docker images -q nesfr3:$NESFR3_VERSION) ]; then
 	echo "Dockerfile has already been built"
 else
