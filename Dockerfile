@@ -25,5 +25,8 @@ RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu $(lsb_relea
         apt update &&\
         apt upgrade -y
 
+RUN sed -i '/_TIMEOUT_SIGINT/s/15.0/0.5/g' /opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py &&\
+        sed -i '/_TIMEOUT_SIGTERM/s/2.0/0.5/g' /opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py
+
 WORKDIR /mnt
 CMD /bin/bash
