@@ -20,5 +20,10 @@ RUN apt-get install -y python-pip &&\
 
 RUN apt-get install -y ros-melodic-joy ros-melodic-cartographer-ros ros-melodic-velodyne-simulator
 
+RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/gazebo-stable.list' &&\
+        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743 &&\
+        apt update &&\
+        apt upgrade -y
+
 WORKDIR /mnt
 CMD /bin/bash
