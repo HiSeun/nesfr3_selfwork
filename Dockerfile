@@ -28,5 +28,19 @@ RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu $(lsb_relea
 RUN sed -i '/_TIMEOUT_SIGINT/s/15.0/0.5/g' /opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py &&\
         sed -i '/_TIMEOUT_SIGTERM/s/2.0/0.5/g' /opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py
 
+RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1BXgxGIXM6E6TNP4-2JDRmPU4ln7ZjcDC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1BXgxGIXM6E6TNP4-2JDRmPU4ln7ZjcDC" -O libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb && rm -rf /tmp/cookies.txt  &&\
+        dpkg -i libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb &&\
+        wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1i36naZvF4RtPM_MPHPLv6HKLYUCnL17e' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1i36naZvF4RtPM_MPHPLv6HKLYUCnL17e" -O libcudnn7-dev_7.6.5.32-1+cuda10.2_amd64.deb && rm -rf /tmp/cookies.txt  &&\
+        dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.2_amd64.deb
+
+#Install dlib
+#RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git &&\
+#        mkdir -p /dlib/build &&\
+#        cmake -H/dlib -B/dlib/build -DDLIB_USE_CUDA=1 -DUSE_AVX_INSTRUCTIONS=1 &&\
+#        cmake --build /dlib/build &&\
+#        cd /dlib &&\
+#        python /dlib/setup.py install &&\
+#        pip install face_recognition
+
 WORKDIR /mnt
 CMD /bin/bash
