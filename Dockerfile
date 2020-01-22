@@ -33,14 +33,17 @@ RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=down
         wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1i36naZvF4RtPM_MPHPLv6HKLYUCnL17e' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1i36naZvF4RtPM_MPHPLv6HKLYUCnL17e" -O libcudnn7-dev_7.6.5.32-1+cuda10.2_amd64.deb && rm -rf /tmp/cookies.txt  &&\
         dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.2_amd64.deb
 
-#Install dlib
-#RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git &&\
-#        mkdir -p /dlib/build &&\
-#        cmake -H/dlib -B/dlib/build -DDLIB_USE_CUDA=1 -DUSE_AVX_INSTRUCTIONS=1 &&\
-#        cmake --build /dlib/build &&\
-#        cd /dlib &&\
-#        python /dlib/setup.py install &&\
-#        pip install face_recognition
+#Install face_recognition and dependencies
+RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git &&\
+        sed -i 's/${cuda_blas_path}/\/usr\/local\/cuda\/targets\/x86_64-linux\/lib/g' /dlib/dlib/CMakeLists.txt &&\
+        mkdir -p /dlib/build &&\
+        cmake -H/dlib -B/dlib/build -DDLIB_USE_CUDA=1 -DUSE_AVX_INSTRUCTIONS=1 &&\
+        cmake --build /dlib/build &&\
+        cd /dlib &&\
+        python /dlib/setup.py install &&\
+        pip install opencv_python &&\
+        pip install face_recognition
+
 
 WORKDIR /mnt
 CMD /bin/bash
