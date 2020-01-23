@@ -21,6 +21,15 @@ else
 	unzip hrnet-002.zip -d $DATA_DIR
 fi
 
+# Download the Yolov3 weight for human(object) detection
+WEIGHT_DIR=catkin_ws/src/nesfr3/nesfr3_detection/weight
+if [ -d "$WEIGHT_DIR" ]; then
+	echo "Yolov3 weight has already been downloaded"
+else
+	echo "Downloading Yolov3 weight"
+    wget -P catkin_ws/src/nesfr3/nesfr3_detection/weight https://pjreddie.com/media/files/yolov3.weights
+fi
+
 NESFR3_VERSION=v202001201
 if [ ! -z $(docker images -q nesfr3:$NESFR3_VERSION) ]; then
 	echo "Dockerfile has already been built"
