@@ -16,7 +16,7 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86
         apt-get -y install cuda-toolkit-10-2
 
 RUN apt-get install -y python-pip &&\
-        pip --no-cache-dir install torch torchvision yacs
+        pip --no-cache-dir install torch torchvision yacs future
 
 RUN apt-get install -y ros-melodic-joy ros-melodic-cartographer-ros ros-melodic-velodyne-simulator
 
