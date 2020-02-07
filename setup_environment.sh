@@ -22,7 +22,7 @@ else
 fi
 
 # Download the Yolov3 weight for human(object) detection
-WEIGHT_DIR=catkin_ws/src/nesfr3/nesfr3_detection/weight
+WEIGHT_DIR=catkin_ws/src/nesfr3/nesfr3_pose_estimation/weight
 if [ -d "$WEIGHT_DIR" ]; then
 	echo "Yolov3 weight has already been downloaded"
 else
