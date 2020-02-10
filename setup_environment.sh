@@ -27,7 +27,7 @@ if [ -d "$WEIGHT_DIR" ]; then
 	echo "Yolov3 weight has already been downloaded"
 else
 	echo "Downloading Yolov3 weight"
-    wget -P catkin_ws/src/nesfr3/nesfr3_detection/weight https://pjreddie.com/media/files/yolov3.weights
+    wget -P catkin_ws/src/nesfr3/nesfr3_pose_estimation/weight https://pjreddie.com/media/files/yolov3.weights
 fi
 
 NESFR3_VERSION=v202001280
