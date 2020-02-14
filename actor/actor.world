@@ -9,5 +9,16 @@
           <filename>/mnt/actor/actor.dae</filename>
       </skin>
     </actor>
+    <model name="my_mesh">
+        <pose>0 0 0  0 0 0</pose>
+        <static>true</static>
+        <link name="body">
+            <visual name="visual">
+                <geometry>
+                    <mesh><uri>/mnt/actor/duck.dae</uri></mesh>
+                </geometry>
+            </visual>
+        </link>
+    </model>
   </world>
 </sdf>
