@@ -30,7 +30,7 @@ else
     wget -P catkin_ws/src/nesfr3/nesfr3_pose_estimation/weight https://pjreddie.com/media/files/yolov3.weights
 fi
 
-NESFR3_VERSION=v202001280
+NESFR3_VERSION=v202002192
 if [ ! -z $(docker images -q nesfr3:$NESFR3_VERSION) ]; then
 	echo "Dockerfile has already been built"
 else
