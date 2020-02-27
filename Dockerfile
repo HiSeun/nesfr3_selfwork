@@ -42,7 +42,7 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86
         apt-get -y install cuda-toolkit-10-2
 
 RUN apt-get install -y python-pip &&\
-        pip --no-cache-dir install torch torchvision yacs future
+        pip --no-cache-dir install torch torchvision yacs future pycocotools tqdm
 
 RUN apt-get install -y ros-melodic-joy ros-melodic-cartographer-ros ros-melodic-velodyne-simulator
 
@@ -76,10 +76,20 @@ RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git 
     pip install opencv_python &&\
     pip install face_recognition
 
+#Install torch2trt
+RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt.git && \
+    cd torch2trt && \
+    python setup.py install
+
+#Install trt_pose
+RUN git clone https://github.com/NVIDIA-AI-IOT/trt_pose.git && \
+    cd trt_pose && \
+    python setup.py install
+
 RUN apt update && apt install -y \
     libnvinfer-dev \
     libnvparsers-dev \
-    python3-libnvinfer-dev
+    python-libnvinfer-dev
 
 ENV CUDACXX /usr/local/cuda/bin/nvcc
 ENV PATH $PATH:/usr/local/cuda/bin

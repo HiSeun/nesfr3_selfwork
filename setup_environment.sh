@@ -8,29 +8,7 @@ docker stop nesfr3
 echo "Removing nesfr3 container"
 docker rm nesfr3
 
-# Download the HRNet dataset for INT8 Calibration
-DATA_DIR=HRNetData
-if [ -d "$DATA_DIR" ]; then
-	echo "$DATA_DIR has already been downloaded"
-else
-	echo "Downloading HRNet dataset 001"
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1FmolGX7-pqimz6t8cwjuJWfrwDUsgwmW' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1FmolGX7-pqimz6t8cwjuJWfrwDUsgwmW" -O hrnet-001.zip && rm -rf /tmp/cookies.txt
-	echo "Downloading HRNet dataset 002"
-    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1EIc9zwtHcT-nTEit6dMmiqFVTI3bh3KO' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1EIc9zwtHcT-nTEit6dMmiqFVTI3bh3KO" -O hrnet-002.zip && rm -rf /tmp/cookies.txt
-	unzip hrnet-001.zip -d $DATA_DIR
-	unzip hrnet-002.zip -d $DATA_DIR
-fi
-
-# Download the Yolov3 weight for human(object) detection
-WEIGHT_DIR=catkin_ws/src/nesfr3/nesfr3_pose_estimation/weight
-if [ -d "$WEIGHT_DIR" ]; then
-	echo "Yolov3 weight has already been downloaded"
-else
-	echo "Downloading Yolov3 weight"
-    wget -P catkin_ws/src/nesfr3/nesfr3_pose_estimation/weight https://pjreddie.com/media/files/yolov3.weights
-fi
-
-NESFR3_VERSION=v202002192
+NESFR3_VERSION=v202002270
 if [ ! -z $(docker images -q nesfr3:$NESFR3_VERSION) ]; then
 	echo "Dockerfile has already been built"
 else
