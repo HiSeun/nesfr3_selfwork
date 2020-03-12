@@ -4,6 +4,3 @@
 [submodule "catkin_ws/src/nesfr3"]
 	path = catkin_ws/src/nesfr3
 	url = git@github.com:wom-ai/nesfr3.git
-[submodule "catkin_ws/src/darknet_ros"]
-	path = catkin_ws/src/darknet_ros
-	url = https://github.com/leggedrobotics/darknet_ros.git
