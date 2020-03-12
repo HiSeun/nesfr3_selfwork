@@ -96,3 +96,5 @@ ENV PATH $PATH:/usr/local/cuda/bin
 
 WORKDIR /mnt
 CMD /bin/bash
+
+RUN echo 'source /mnt/catkin_ws/devel/setup.bash' >> /etc/bash.bashrc
