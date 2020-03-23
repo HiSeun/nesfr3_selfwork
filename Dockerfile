@@ -74,7 +74,8 @@ RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git 
     cd /dlib &&\
     python /dlib/setup.py install &&\
     pip install opencv_python &&\
-    pip install face_recognition
+    pip install face_recognition &&\
+    pip install scipy
 
 #Install torch2trt
 RUN git clone https://github.com/NVIDIA-AI-IOT/torch2trt.git && \
