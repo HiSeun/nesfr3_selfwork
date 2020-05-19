@@ -33,13 +33,18 @@ RUN mkdir -p /root/.gazebo &&\
         cd /root/.gazebo &&\
         hg clone https://bitbucket.org/osrf/gazebo_models models
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin &&\
-        mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600 &&\
-        wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb &&\
-        dpkg -i cuda-repo-ubuntu1804-10-2-local-10.2.89-440.33.01_1.0-1_amd64.deb &&\
-        apt-key add /var/cuda-repo-10-2-local-10.2.89-440.33.01/7fa2af80.pub &&\
-        apt-get update &&\
-        apt-get -y install cuda-toolkit-10-2
+ENV DEBIAN_FRONTEND noninteractive
+ENV os ubuntu1804
+        
+# cuda 10.1: used 10.1 for using tensorrt engine built on cuda 10.1
+# From https://developer.nvidia.com/cuda-10.1-download-archive-base?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal
+ENV cudatag 10-1-local-10.1.105-418.39
+RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1J5g516QdN8DB5IIgw-59cRYxxEgZUZjZ' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1J5g516QdN8DB5IIgw-59cRYxxEgZUZjZ" -O cuda-repo-${os}-${cudatag}_1.0-1_amd64.deb && \
+    rm -rf /tmp/cookies.txt && \
+    dpkg -i cuda-repo-${os}-${cudatag}_1.0-1_amd64.deb && \
+    apt-key add /var/cuda-repo-${cudatag}/7fa2af80.pub && \
+    apt-get update && apt-get -y install cuda && apt-get -y install cuda-toolkit-10-1 && \
+    rm cuda-repo-${os}-${cudatag}_1.0-1_amd64.deb
 
 RUN apt-get install -y python-pip &&\
         pip --no-cache-dir install torch torchvision yacs future pycocotools tqdm
@@ -54,16 +59,15 @@ RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu $(lsb_relea
 RUN sed -i '/_TIMEOUT_SIGINT/s/15.0/0.5/g' /opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py &&\
         sed -i '/_TIMEOUT_SIGTERM/s/2.0/0.5/g' /opt/ros/melodic/lib/python2.7/dist-packages/roslaunch/nodeprocess.py
 
-RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1BXgxGIXM6E6TNP4-2JDRmPU4ln7ZjcDC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1BXgxGIXM6E6TNP4-2JDRmPU4ln7ZjcDC" -O libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb && \
-   rm -rf /tmp/cookies.txt  && \
-   dpkg -i libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb && \
-   wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1i36naZvF4RtPM_MPHPLv6HKLYUCnL17e' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1i36naZvF4RtPM_MPHPLv6HKLYUCnL17e" -O libcudnn7-dev_7.6.5.32-1+cuda10.2_amd64.deb && \
-   rm -rf /tmp/cookies.txt  &&\
-   dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.2_amd64.deb && \
-   wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ftZp3WATRcfGlIgBWxLQqMr8QI8MJDaA' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ftZp3WATRcfGlIgBWxLQqMr8QI8MJDaA" -O nv-tensorrt-repo-ubuntu1804-cuda10.2-trt7.0.0.11-ga-20191216_1-1_amd64.deb && \
-   rm -rf /tmp/cookies.txt  &&\
-   dpkg -i nv-tensorrt-repo-ubuntu1804-cuda10.2-trt7.0.0.11-ga-20191216_1-1_amd64.deb && \
-   apt update
+# TensorRT 6.0.1 with cuda 10.1
+# From https://developer.nvidia.com/nvidia-tensorrt-6x-download
+ENV trttag cuda10.1-trt6.0.1.5-ga-20190913
+RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1vMA6PuW5ZESxtTmqNub9FS_9G0fl1Cxv' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1vMA6PuW5ZESxtTmqNub9FS_9G0fl1Cxv" -O nv-tensorrt-repo-${os}-${trttag}_1-1_amd64.deb && \
+    rm -rf /tmp/cookies.txt && \
+    dpkg -i nv-tensorrt-repo-${os}-${trttag}_1-1_amd64.deb && \
+    apt-key add /var/nv-tensorrt-repo-${trttag}/7fa2af80.pub && \
+    apt-get update && apt-get install -y tensorrt && apt-get install -y python-libnvinfer-dev && \
+    rm nv-tensorrt-repo-${os}-${trttag}_1-1_amd64.deb
 
 #Install face_recognition and dependencies
 RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git &&\
