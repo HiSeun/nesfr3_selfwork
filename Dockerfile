@@ -97,6 +97,13 @@ RUN apt update && apt install -y \
     libnvparsers-dev \
     python-libnvinfer-dev
 
+# installl numba and its dependency
+RUN apt-get install -y llvm &&\
+    pip install llvmlite==0.31 &&\
+    pip install colorama==0.3.9 &&\
+    pip install numba
+
+RUN python -m pip install pycuda==2019.1
 ENV CUDACXX /usr/local/cuda/bin/nvcc
 ENV PATH $PATH:/usr/local/cuda/bin
 
