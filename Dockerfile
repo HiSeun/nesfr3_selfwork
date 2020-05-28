@@ -103,9 +103,44 @@ RUN apt-get install -y llvm &&\
     pip install colorama==0.3.9 &&\
     pip install numba
 
-RUN python -m pip install pycuda==2019.1
 ENV CUDACXX /usr/local/cuda/bin/nvcc
 ENV PATH $PATH:/usr/local/cuda/bin
+
+# install pycuda
+RUN pip install pycuda==2019.1
+
+# install nsight-sys
+RUN apt-get update -y && \
+        DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        ca-certificates \
+        dbus \
+        fontconfig \
+        gnupg \
+        libfreetype6 \
+        libglib2.0-0 \
+        libsqlite3-0 \
+        libx11-xcb1 \
+        libxcb-glx0 \
+        libxcb-xkb1 \
+        libxcomposite1 \
+        libxi6 \
+        libxml2 \
+        libxrender1 \
+        openssh-client \
+        wget \
+        xcb \
+        xkb-data && \
+    
+    wget -qO - https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub | apt-key add -  && \ 
+    echo "deb https://developer.download.nvidia.com/devtools/repo-deb/x86_64/ /" >> /etc/apt/sources.list.d/nsight.list && \
+    apt-get update -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    nsight-systems-2020.2.1 && \   
+    rm -rf /var/lib/apt/lists/* 
+
+# env for nsight-sys
+ENV LC_ALL=C
 
 WORKDIR /mnt
 CMD /bin/bash
