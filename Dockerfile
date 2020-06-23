@@ -31,7 +31,7 @@ RUN cd /tmp && \
 
 RUN mkdir -p /root/.gazebo &&\
         cd /root/.gazebo &&\
-        hg clone https://bitbucket.org/osrf/gazebo_models models
+        git clone https://github.com/osrf/gazebo_models.git models
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV os ubuntu1804
@@ -131,7 +131,6 @@ RUN apt-get update -y && \
         wget \
         xcb \
         xkb-data && \
-    
     wget -qO - https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub | apt-key add -  && \ 
     echo "deb https://developer.download.nvidia.com/devtools/repo-deb/x86_64/ /" >> /etc/apt/sources.list.d/nsight.list && \
     apt-get update -y && \
