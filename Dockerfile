@@ -108,6 +108,8 @@ ENV PATH $PATH:/usr/local/cuda/bin
 
 # install pycuda
 RUN pip install pycuda==2019.1
+# install pytools compatible with python2 for pycuda
+RUN pip install pytools==2020.2
 
 # install nsight-sys
 RUN apt-get update -y && \
