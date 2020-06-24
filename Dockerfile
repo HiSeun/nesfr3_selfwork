@@ -97,7 +97,7 @@ RUN apt update && apt install -y \
     libnvparsers-dev \
     python-libnvinfer-dev
 
-# installl numba and its dependency
+# install numba and its dependency
 RUN apt-get install -y llvm &&\
     pip install llvmlite==0.31 &&\
     pip install colorama==0.3.9 &&\
@@ -142,6 +142,9 @@ RUN apt-get update -y && \
 
 # env for nsight-sys
 ENV LC_ALL=C
+
+RUN apt-get update
+RUN apt-get install -y ros-melodic-bfl ros-melodic-velodyne* ros-melodic-cob-perception-msgs
 
 WORKDIR /mnt
 CMD /bin/bash
