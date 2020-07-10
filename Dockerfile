@@ -43,7 +43,7 @@ RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=down
     rm -rf /tmp/cookies.txt && \
     dpkg -i cuda-repo-${os}-${cudatag}_1.0-1_amd64.deb && \
     apt-key add /var/cuda-repo-${cudatag}/7fa2af80.pub && \
-    apt-get update && apt-get -y install cuda && apt-get -y install cuda-toolkit-10-1 && \
+    apt-get update && apt-get -y install cuda-toolkit-10-1 && \
     rm cuda-repo-${os}-${cudatag}_1.0-1_amd64.deb
 
 RUN apt-get install -y python-pip &&\
