@@ -147,7 +147,7 @@ RUN apt-get update
 RUN apt-get install -y ros-melodic-bfl ros-melodic-velodyne* ros-melodic-cob-perception-msgs
 
 # env for ouster-ros
-RUN apt-get install -y libglfw3-dev
+RUN apt-get install -y libglfw3-dev libglew-dev libtclap-dev
 ENV ouster_client_DIR /mnt/catkin_ws/src/nesfr3/nesfr3_ouster/ouster_client/cmake/
 ENV ouster_viz_DIR /mnt/catkin_ws/src/nesfr3/nesfr3_ouster/ouster_viz/cmake/
 
