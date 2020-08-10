@@ -3,12 +3,12 @@ This repository is consisted with one Dockerfile and 2 submodules. Dockerfile ex
 
 [Click to see video](https://youtu.be/rneiLgkldIA) 
 
-## [NESFR3(Never Ending Self-Filming Robot)](https://github.com/wom-ai/nesfr3)
+## 1. [NESFR3(Never Ending Self-Filming Robot)](https://github.com/wom-ai/nesfr3)
 NESFR3 repository stands for Never Ending Self-Filming Robot. It literally films video with lidar and cameras, and does sort of tasks such as human tracking, detecting, pose estimating, etc. 
 
-## [NESFR3 SIMULATIONS](https://github.com/wom-ai/nesfr3_simulations)
+## 2. [NESFR3 SIMULATIONS](https://github.com/wom-ai/nesfr3_simulations)
 NESFR3 SIMULATIONS repository stands for configuring simulation environment of nesfr3. It contains map files, gazebo configuration files, etc.
 
-## [Quickstart](https://github.com/wom-ai/nesfr3_workspace/wiki/Quickstart)
+## 3. [Quickstart](https://github.com/wom-ai/nesfr3_workspace/wiki/Quickstart)
 
-## [Overview of projects](https://github.com/wom-ai/nesfr3_workspace/wiki)
+## 4. [Overview of projects](https://github.com/wom-ai/nesfr3_workspace/wiki)
