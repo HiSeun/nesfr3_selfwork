@@ -22,12 +22,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     vim
 
-# Bump cmake version to 3.14
+# Bump cmake version to 3.18.2
 RUN cd /tmp && \
-    wget https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4-Linux-x86_64.sh && \
-    chmod +x cmake-3.14.4-Linux-x86_64.sh && \
-    ./cmake-3.14.4-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license && \
-    rm ./cmake-3.14.4-Linux-x86_64.sh
+    wget https://github.com/Kitware/CMake/releases/download/v3.18.2/cmake-3.18.2-Linux-x86_64.sh && \
+    chmod +x cmake-3.18.2-Linux-x86_64.sh && \
+    ./cmake-3.18.2-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license && \
+    rm ./cmake-3.18.2-Linux-x86_64.sh
 
 RUN mkdir -p /root/.gazebo &&\
         cd /root/.gazebo &&\
@@ -35,7 +35,7 @@ RUN mkdir -p /root/.gazebo &&\
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV os ubuntu1804
-        
+
 # cuda 10.1: used 10.1 for using tensorrt engine built on cuda 10.1
 # From https://developer.nvidia.com/cuda-10.1-download-archive-base?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal
 ENV cudatag 10-1-local-10.1.105-418.39
@@ -77,6 +77,7 @@ RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git 
     cmake --build /dlib/build &&\
     cd /dlib &&\
     python /dlib/setup.py install &&\
+    pip install -U scikit-build &&\
     pip install opencv_python &&\
     pip install face_recognition &&\
     pip install scipy &&\
