@@ -77,6 +77,7 @@ RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git 
     cmake --build /dlib/build &&\
     cd /dlib &&\
     python /dlib/setup.py install &&\
+    pip install scikit-build &&\
     pip install opencv_python &&\
     pip install face_recognition &&\
     pip install scipy &&\

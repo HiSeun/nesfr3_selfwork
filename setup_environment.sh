@@ -8,7 +8,7 @@ docker stop nesfr3
 echo "Removing nesfr3 container"
 docker rm nesfr3
 
-NESFR3_VERSION=v202007131
+NESFR3_VERSION=v202009011
 
 if [ ! -z $(docker images -q nesfr3:$NESFR3_VERSION) ]; then
 	echo "Dockerfile has already been built"
