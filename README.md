@@ -3,7 +3,7 @@
 This will concretely explain the roles, and the topics that comes in and goes out.
 
 ## 1. Cartographer_node
-Cartographer_node and Cartographer_occupancy_grid_node are the Google open source libraries. Cartographer is a system that provides real-time SLAM in 2D and 3D across multiple platforms and sensor configurations. Anyone can approach to its sources through [cartographer] (https://github.com/cartographer-project/cartographer, "ROS_Wiki").  
+Cartographer_node and Cartographer_occupancy_grid_node are the Google open source libraries. Cartographer is a system that provides real-time SLAM in 2D and 3D across multiple platforms and sensor configurations. Anyone can approach to its sources through [cartographer](https://github.com/cartographer-project/cartographer, "ROS_Wiki").  
 
 ### 1.1. package
 Cartographer_node is included in the 'cartographer_ros' package.
@@ -25,7 +25,7 @@ Using lidar data, it generates submaps and passes to the occupancy_grid_node
 ```
 
 --------------------------------------
-reference : [ROS API reference documentation] (https://google-cartographer-ros.readthedocs.io/en/latest/ros_api.html, "google_cartographer")
+reference : [ROS API reference documentation](https://google-cartographer-ros.readthedocs.io/en/latest/ros_api.html, "google_cartographer")
 
 ## 2. Cartographer_occupancy_grid_node
 
