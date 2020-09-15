@@ -13,15 +13,15 @@ The cartographer_node is the SLAM node used for online, real-time SLAM.
 Using lidar data, it generates submaps and passes to the occupancy_grid_node
 
 ### 1.3. Topics
-'''
-> Subscribes
->    > nesfr3/1/lidar/points
-     
->    > nesfr3/1/wheel_odom
->    > nesfr3/1/lidar_imu
-> Publishes
->    >
-'''
+' ' '
+* Subscribes
+> nesfr3/1/lidar/points
+> nesfr3/1/wheel_odom
+> nesfr3/1/lidar_imu
+
+* Publishes
+>
+' ' '
 ## 2. Cartographer_occupancy_grid_node
 
 ### 2.1. package
