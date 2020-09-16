@@ -57,8 +57,23 @@ As you can see from the above image, the global map is not generated accurately,
 reference : [ROS API reference documentation](https://google-cartographer-ros.readthedocs.io/en/latest/ros_api.html, "google_cartographer")
 
 ## 3. nesfr3_tracking
-nesfr3_tracking node is for **matching process**. The two main job for this node is
+nesfr3_tracking node is for **matching process**. There are several function defined in this ```nesfr3_human_matching.py```. Considering these functions, we can define that the two main job for this node are
 ```
 1. Matching cbox and bbox.
 2. Matching hsv histogram and the actor id.
 ```
+### 3.1. package
+nesfr3_tracking node is included in the 'nesfr3_tracking' package. 
+
+### 3.2. Role
+The main 4 functions defined in this node are ```onImage(data_bbox, data_cbox, data_cluster)```, ```scoring(cluster_spec, bbox_spec)```, ``` hist_callback(data_img, data_hist, data_state, data_id)``` and ```state_callback(data_img, data_hist, data_state)```.
+Starting from ```onImage()``` function we will discuss about the role of this node.
+
+* onImage(data_bbox, data_cbox, data_cluster)
+    - Main role of this functino is to comparing the cluster box specification and the boundary box specification to identify whether those two boxes are corresponds to the same person. Through this process, we can filter out the rest of bboxes except for the human. The method for deciding correspondence comes from the following function ```scoring(cluster_spec, bbox_spec)```. 
+    
+* scoring(cluster_spec, bbox_spec)
+    - In this function
+* hist_callback(data_img, data_hist, data_state, data_id)
+* state_callback(data_img, data_hist, data_state)
+
