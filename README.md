@@ -8,11 +8,7 @@ Cartographer_node and Cartographer_occupancy_grid_node are the Google open sourc
 ### 1.1. package
 Cartographer_node is included in the 'cartographer_ros' package.
 
-### 1.2. Role
-The cartographer_node is the SLAM node used for online, real-time SLAM.
-Using lidar data, it generates submaps and passes to the occupancy_grid_node.    
-
-### 1.3. Topics
+### 1.2. Topics
 * Subscribes
 ```
 - nesfr3/1/lidar/points
@@ -30,19 +26,20 @@ It is not clear that whether the nesfr3 robot has the imu sensor itself or not.
 ```
 ```nesfr3/1/submap_list``` is the submap_list topic. Each step, cartograhper will create its own local map. And they save those local maps in this submap_lists and send to the cartographer_occupancy_grid_node. 
 
+### 1.3. Role
+The cartographer_node is the SLAM node used for online, real-time SLAM.
+Using lidar data, it generates submaps and passes to the occupancy_grid_node.    
+
 * * *
 reference : [ROS API reference documentation](https://google-cartographer-ros.readthedocs.io/en/latest/ros_api.html, "google_cartographer")
+* * *
+
 
 ## 2. Cartographer_occupancy_grid_node
 ### 2.1. package
 Cartographer_occupancy_grid_node is included in the 'cartographer_ros' package.
 
-### 2.2. Role
-By receiving the submap_lists through the ```nesfr3/1/submap_list``` topic, this node will generate the global map. 
-<img src = "/Shots/cartograhper1.png"></img>
-As you can see from the above image, the global map is not generated accurately, due to poor loop closure. 
-
-### 2.3. Topics
+### 2.2. Topics
 * Subscribes
 ```
 - nesfr3/1/submap_list
@@ -53,8 +50,16 @@ As you can see from the above image, the global map is not generated accurately,
 - nesfr3/1/map
 ```
 ```nesfr3/1/map``` is ```nav_msgs/OccupancyGrid``` type. We can visualize the SLAM in RViz by adding the topic name ```nesfr3/1/map```. 
+
+### 2.3. Role
+By receiving the submap_lists through the ```nesfr3/1/submap_list``` topic, this node will generate the global map. 
+<img src = "/Shots/cartograhper1.png"></img>
+As you can see from the above image, the global map is not generated accurately, due to poor loop closure. 
+
 * * *
 reference : [ROS API reference documentation](https://google-cartographer-ros.readthedocs.io/en/latest/ros_api.html, "google_cartographer")
+* * *
+
 
 ## 3. nesfr3_tracking
 nesfr3_tracking node is for **matching process**. There are several function defined in this ```nesfr3_human_matching.py```. Considering these functions, we can define that the two main job for this node are
@@ -65,7 +70,24 @@ nesfr3_tracking node is for **matching process**. There are several function def
 ### 3.1. package
 nesfr3_tracking node is included in the 'nesfr3_tracking' package. 
 
-### 3.2. Role
+### 3.2. Topics
+* Subscribes
+```
+- nesfr3/1/fisheye_camera/image_raw/image_topics (/gazebo)
+- nesfr3/1/bounding_boxes (image_converter)
+- nesfr3/1/object3d_detector/poses (object3d_detector)
+- nesfr3/1/cluster (object3d_detector)
+- nesfr3/1/people_tracker/people (bayes_people_tracker)
+- nesfr3/1/histogram (bayes_people_tracker)
+```
+
+* Publishes
+```
+- nesfr3/1/pose_with_cluster
+```
+```nesfr3/1/pose_with_cluster``` contains the ```PoseArrayWithClusters.msg``` file. In the message file, we could find the orientation data of the actors ```poses```, and the pointcloud data ```segments```.
+    
+### 3.3. Role
 The main 4 functions defined in this node are ```onImage(data_bbox, data_cbox, data_cluster)```, ```scoring(cluster_spec, bbox_spec)```, ``` hist_callback(data_img, data_hist, data_state, data_id)``` and ```state_callback(data_img, data_hist, data_state)```.
 Starting from ```onImage()``` function we will discuss about the role of this node.
 
@@ -85,7 +107,7 @@ Starting from ```onImage()``` function we will discuss about the role of this no
 * state_callback(data_img, data_hist, data_state)
     - It compares the current histogram value data with the previous saved 10 data. 
     - It also use 'scoring' method but this scoring is not the same with the above method. Whether the histogram value data was not in the ```hist_list``` data in the above function, than the nesfr3 identifiest the human with ```new_id```.
-    
+
 * * *
 reference : [wom-ai/Point Cloud 3d Clustering](https://github.com/wom-ai/nesfr3_workspace/wiki/Point-Cloud-3d-Clustering, "nesfr3_tracking")
-
+* * *
