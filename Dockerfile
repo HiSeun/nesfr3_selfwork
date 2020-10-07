@@ -1,4 +1,4 @@
-FROM osrf/ros:melodic-desktop-full
+FROM osrf/ros:melodic-desktop-full 
 
 RUN apt-get update && apt-get install -y software-properties-common
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
@@ -22,12 +22,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     vim
 
-# Bump cmake version to 3.14
+# Bump cmake version to 3.18.2
 RUN cd /tmp && \
-    wget https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4-Linux-x86_64.sh && \
-    chmod +x cmake-3.14.4-Linux-x86_64.sh && \
-    ./cmake-3.14.4-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license && \
-    rm ./cmake-3.14.4-Linux-x86_64.sh
+    wget https://github.com/Kitware/CMake/releases/download/v3.18.2/cmake-3.18.2-Linux-x86_64.sh && \
+    chmod +x cmake-3.18.2-Linux-x86_64.sh && \
+    ./cmake-3.18.2-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license && \
+    rm ./cmake-3.18.2-Linux-x86_64.sh
 
 RUN mkdir -p /root/.gazebo &&\
         cd /root/.gazebo &&\
@@ -47,6 +47,7 @@ RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=down
     rm cuda-repo-${os}-${cudatag}_1.0-1_amd64.deb
 
 RUN apt-get install -y python-pip &&\
+#    pip install --upgrade pip &&\
         pip --no-cache-dir install torch torchvision yacs future pycocotools tqdm
 
 RUN apt-get install -y ros-melodic-joy ros-melodic-cartographer-ros ros-melodic-velodyne-simulator
@@ -78,7 +79,7 @@ RUN git clone -b 'v19.16' --single-branch https://github.com/davisking/dlib.git 
     cd /dlib &&\
     python /dlib/setup.py install &&\
     pip install scikit-build &&\
-    pip install opencv_python &&\
+    pip install opencv-python==4.2.0.32 &&\
     pip install face_recognition &&\
     pip install scipy &&\
     pip install -U scikit-learn
@@ -151,6 +152,9 @@ RUN apt-get install -y ros-melodic-bfl ros-melodic-velodyne* ros-melodic-cob-per
 RUN apt-get install -y libglfw3-dev libglew-dev libtclap-dev
 ENV ouster_client_DIR /mnt/catkin_ws/src/nesfr3/nesfr3_ouster/ouster_client/cmake/
 ENV ouster_viz_DIR /mnt/catkin_ws/src/nesfr3/nesfr3_ouster/ouster_viz/cmake/
+
+#separation of opencv_python installation
+#RUN pip install opencv_python
 
 WORKDIR /mnt
 CMD /bin/bash
