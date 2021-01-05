@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<actors xmlns:xacro="http://www.ros.org/wiki/xacro" name="actors">
+
+	<xacro:property name="M_PI" value="3.1415926535897931" />
+
+	<xacro:arg name="robots_to_ignore" default="1"/>
+
+
+	<xacro:macro name="actors">
+
+		<xacro:one_actor initial_pose_x="-4" initial_pose_y="-7" initial_pose_yaw="${M_PI}" target_x="3" target_y="-15" id="1"/>
+
+		<xacro:one_actor initial_pose_x="-4" initial_pose_y="0" initial_pose_yaw="${M_PI}" target_x="-4" target_y="-7" id="2"/>
+
+		<xacro:one_actor initial_pose_x="-2" initial_pose_y="-6" initial_pose_yaw="${-M_PI/2}" target_x="-4" target_y="0" id="3"/> 
+
+		<xacro:one_actor initial_pose_x="-10" initial_pose_y="-10" initial_pose_yaw="${M_PI/2}" target_x="-2" target_y="-6" id="4"/>
+
+		<xacro:one_actor initial_pose_x="-5" initial_pose_y="4" initial_pose_yaw="${-M_PI}" target_x="-10" target_y="-10" id="5"/>
+
+		<xacro:one_actor initial_pose_x="10" initial_pose_y="-2" initial_pose_yaw="${M_PI}" target_x="-5" target_y="4" id="6"/>
+
+		<!-- <xacro:one_actor initial_pose_x="-4" initial_pose_y="-12" initial_pose_yaw="${M_PI/2}" target_x="10" target_y="-2" id="7"/>
+
+		<xacro:one_actor initial_pose_x="-7" initial_pose_y="-13" initial_pose_yaw="${-M_PI/2}" target_x="-4" target_y="-12" id="8"/>
+
+		<xacro:one_actor initial_pose_x="7" initial_pose_y="3" initial_pose_yaw="${M_PI/2}" target_x="-7" target_y="-13" id="9"/>
+
+		<xacro:one_actor initial_pose_x="13" initial_pose_y="-15" initial_pose_yaw="${M_PI}" target_x="7" target_y="3" id="10"/>
+
+		<xacro:one_actor initial_pose_x="-16" initial_pose_y="-14" initial_pose_yaw="${-M_PI/2}" target_x="13" target_y="-15" id="11"/>
+
+		<xacro:one_actor initial_pose_x="-20" initial_pose_y="4" initial_pose_yaw="${-M_PI}" target_x="-16" target_y="-14" id="12"/>
+
+		<xacro:one_actor initial_pose_x="7" initial_pose_y="-10" initial_pose_yaw="${M_PI/2}" target_x="-20" target_y="4" id="13"/>
+
+		<xacro:one_actor initial_pose_x="-21" initial_pose_y="-12" initial_pose_yaw="${M_PI}" target_x="7" target_y="-10" id="14"/>
+
+		<xacro:one_actor initial_pose_x="15" initial_pose_y="-10" initial_pose_yaw="${M_PI/2}" target_x="-21" target_y="-12" id="15"/>
+
+		<xacro:one_actor initial_pose_x="3" initial_pose_y="-15" initial_pose_yaw="${-M_PI/2}" target_x="15" target_y="-10" id="16"/> -->
+
+	</xacro:macro>
+
+
+
+
+
+	<xacro:macro name="one_actor" params="initial_pose_x initial_pose_y initial_pose_yaw target_x target_y id">
+	    <actor name="actor_0${id}" >
+
+			<pose> ${initial_pose_x} ${initial_pose_y} 0 0 0 ${initial_pose_yaw} </pose>
+
+
+			<skin>
+                <filename>/mnt/newactor/actor_0${id}.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+
+			<animation name="walking">
+                <filename>/mnt/newactor/actor_0${id}.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+
+			<plugin name="actor_${id}_plugin" filename="libactor_plugin.so">
+				<target>${target_x} ${target_y} 1.0138</target>
+				<id> ${id} </id>
+
+				<x_lower> -22 </x_lower>
+				<x_upper> 17 </x_upper>
+				<y_lower> -18 </y_lower>
+				<y_upper> 6 </y_upper>
+
+
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+
+				<robots_to_ignore> $(arg robots_to_ignore) </robots_to_ignore>
+
+				<ignore_obstacles>
+					<model>TestB</model>
+					<model>ground_plane</model>
+					<model>nesfr3_simple</model> 
+				</ignore_obstacles>
+			</plugin>
+
+		</actor>
+	</xacro:macro>
+</actors>

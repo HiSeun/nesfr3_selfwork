@@ -1,0 +1,8 @@
+<launch>
+	<arg name="robot_id" default="0"/>
+    <arg name="namespace" value="$(eval 'nesfr3/' + str(arg('robot_id')))"/>
+
+	<group ns="$(arg namespace)">
+        <node pkg="nesfr3_face_recognition" name="face_recognizer" type="facerec.py" output="screen" args="$(arg robot_id)" />
+    </group>
+</launch>

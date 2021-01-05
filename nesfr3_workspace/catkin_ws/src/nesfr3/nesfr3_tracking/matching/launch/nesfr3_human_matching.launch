@@ -1,0 +1,16 @@
+<launch>
+  <arg name="robot_id" default="1"/>
+	<arg name="namespace" value="$(eval 'nesfr3/' + str(arg('robot_id')))"/>
+	<arg name="verbose" default="false"/>
+
+	<group ns="$(arg namespace)">
+    <node pkg="nesfr3_tracking" name="nesfr3_tracking" type="nesfr3_human_matching.py" output="screen" args="$(arg robot_id)"/>
+  </group>
+
+  <include 
+    file="$(find pcl_transformer)/launch/pcl_transformer.launch">
+    <arg name="robot_id" value="$(arg robot_id)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+  </include>
+
+</launch>

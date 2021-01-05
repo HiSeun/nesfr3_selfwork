@@ -1,0 +1,12 @@
+[submodule "wu_ros_tools"]
+	path = wu_ros_tools
+	url = https://github.com/DLu/wu_ros_tools.git
+[submodule "people"]
+	path = people
+	url = https://github.com/wom-ai/people.git
+[submodule "flir_camera_driver"]
+	path = flir_camera_driver
+	url = git@github.com:wom-ai/flir_camera_driver.git
+[submodule "spinnaker_sdk_camera_driver"]
+	path = spinnaker_sdk_camera_driver
+	url = git@github.com:wom-ai/spinnaker_sdk_camera_driver.git

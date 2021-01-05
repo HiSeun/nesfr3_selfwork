@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: hdl_localization
+Description: Description of hdl_localization
+Version: 0.0.0
+Cflags: -I/mnt/catkin_ws/src/hdl_localization/include
+Libs: -L${prefix}/lib 
+Requires: 

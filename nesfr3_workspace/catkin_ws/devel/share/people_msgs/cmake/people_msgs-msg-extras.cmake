@@ -1,0 +1,2 @@
+set(people_msgs_MESSAGE_FILES "/mnt/catkin_ws/src/nesfr3/people/people_msgs/msg/People.msg;/mnt/catkin_ws/src/nesfr3/people/people_msgs/msg/Person.msg;/mnt/catkin_ws/src/nesfr3/people/people_msgs/msg/PersonStamped.msg;/mnt/catkin_ws/src/nesfr3/people/people_msgs/msg/PositionMeasurement.msg;/mnt/catkin_ws/src/nesfr3/people/people_msgs/msg/PositionMeasurementArray.msg")
+set(people_msgs_SERVICE_FILES "")

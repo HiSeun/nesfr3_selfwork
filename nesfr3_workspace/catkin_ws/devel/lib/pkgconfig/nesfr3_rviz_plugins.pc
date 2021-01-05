@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: nesfr3_rviz_plugins
+Description: Description of nesfr3_rviz_plugins
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

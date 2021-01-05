@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+<class>ShotControllerWidget</class>
+  <widget class="QWidget" name="ShotControllerWidget">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>400</width>
+        <height>300</height>
+      </rect>
+    </property>
+
+    <property name="windowTitle">
+      <string>Shot Controller</string>
+    </property>
+  
+
+    <layout class="QVBoxLayout" name="global_layout" stretch="0,0,0,0,0">
+
+      <item>
+        <!-- includes actor, robot, shot size, distance -->
+        <layout class="QHBoxLayout" name="top_layout" stretch="0,0,0,0,0">
+
+          <item>
+            <!-- includes actor, robot, shot size -->
+            <layout class="QVBoxLayout" name="top_left_layout" stretch="0,0,0,0,0">
+              <property name="alignment">
+                <enum>Qt::AlignTop</enum>
+              </property>
+
+
+              <item>
+                <widget class="QLabel" name="actor_label">
+                  <property name="toolTip">
+                    <string>Id of the actor to follow</string>
+                  </property>
+                  <property name="text">
+                    <string>Actor to follow</string>
+                  </property>
+                </widget>
+              </item>
+
+              <item>
+                <widget class="QComboBox" name="actor_box">
+                  <property name="maximumSize" stdset="0">
+                    <size>
+                      <width>150</width>
+                      <height>100</height>
+                    </size>
+                  </property>
+                </widget>
+              </item>
+
+              <item>
+                <widget class="QLabel" name="robot_label">
+                  <property name="toolTip">
+                    <string>Id of the robot to control</string>
+                  </property>
+                  <property name="text">
+                    <string>Robot to control</string>
+                  </property>
+                </widget>
+              </item>
+
+              <item>
+                <widget class="QComboBox" name="robot_box">
+                  <property name="maximumSize" stdset="0">
+                    <size>
+                      <width>150</width>
+                      <height>100</height>
+                    </size>
+                  </property>
+                </widget>
+              </item>
+
+
+              <item>
+                <widget class="QLabel" name="shot_size_label">
+                  <property name="toolTip">
+                    <string>What body parts of the actor are to be filmed</string>
+                  </property>
+                  <property name="text">
+                    <string>Shot size</string>
+                  </property>
+                </widget>
+              </item>
+
+              <item>
+                <widget class="QComboBox" name="shot_size_box">
+                  <property name="maximumSize" stdset="0">
+                    <size>
+                      <width>150</width>
+                      <height>100</height>
+                    </size>
+                  </property>
+                </widget>
+              </item>
+
+            </layout>
+          </item>
+
+          
+
+
+
+
+          
+          <item>
+            <layout class="QHBoxLayout" name="distance_layout" stretch="0,0,0,0,0">
+              <property name="alignment">
+                <enum>Qt::AlignCenter</enum>
+              </property>
+
+
+              <item>
+                <widget class="QSlider" name="distance_slider">
+                  
+                  <property name="minimum">
+                    <number>-750</number>
+                  </property>
+                  <property name="maximum">
+                    <number>750</number>
+                  </property>
+                  <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="tickPosition">
+                    <enum>QSlider::TicksBothSides</enum>
+                  </property>
+
+                  <property name="value">
+                    <number>-250</number>
+                  </property>
+
+                  <property name="singleStep">
+                    <number> 100 </number>
+                  </property>
+                </widget>
+              </item>
+
+
+              <item>
+                <layout class="QVBoxLayout" name="distance_marks_layout" stretch="0,0,0,0,0">
+                  
+                  <item>
+                    <widget class="QLabel" name="max_distance_label">
+                      <property name="text">
+                        <string>16 m</string>
+                      </property>
+                    </widget>
+                  </item>
+
+
+                  
+                  <item>
+                    <spacer name="verticalSpacer_3">
+                      <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>20</width>
+                        <height>40</height>
+                      </size>
+                    </property>
+                    </spacer>
+                  </item>
+
+
+                  <item>
+                    <widget class="QLabel" name="current_distance_label">
+                      <property name="text">
+                        <string>Current distance</string>
+                      </property>
+                    </widget>
+                  </item>
+
+                  <item>
+                    <widget class="QDoubleSpinBox" name="current_distance_box">
+                      <property name="maximumSize" stdset="0">
+                        <size>
+                          <width>150</width>
+                          <height>100</height>
+                        </size>
+                      </property>
+
+                      <property name="suffix">
+                        <string> m</string>
+                      </property>
+
+                      <property name="toolTip">
+                        <string>Current distance (meters)</string>
+                      </property>
+                      <property name="maximum">
+                        <double>16.000000000000000</double>
+                      </property>
+                      <property name="singleStep">
+                        <double>1.00000000000000</double>
+                      </property>
+                      <property name="value">
+                        <double>6.000000000000000</double>
+                      </property>
+                      <property name="minimum">
+                        <double>1.000000000000000</double>
+                      </property>
+                    </widget>
+                  </item>
+                      
+
+                  <item>
+                    <spacer name="verticalSpacer_4">
+                      <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                        <size>
+                          <width>20</width>
+                          <height>40</height>
+                        </size>
+                      </property>
+                    </spacer>
+                  </item>
+
+                  <item>
+                    <widget class="QLabel" name="minimum_distance_label">
+                      <property name="toolTip">
+                        <string>Minimum distance (m)</string>
+                      </property>
+                      <property name="text">
+                        <string>1 m</string>
+                      </property>
+                    </widget>
+                  </item>
+
+                </layout>
+              </item>
+            
+            </layout>
+          </item>
+
+        </layout>
+      </item>
+
+      
+          
+
+      <item>
+        <widget class="QSlider" name="angle_slider">
+          <property name="minimum">
+            <number>-3140</number>
+          </property>
+          <property name="maximum">
+            <number>3140</number>
+          </property>
+          <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="tickPosition">
+            <enum>QSlider::TicksBelow</enum>
+          </property>
+
+          <property name="singleStep">
+            <number> 157 </number>
+          </property>
+
+        </widget>
+      </item>
+
+      <item>
+        <layout class="QHBoxLayout" name="angle_marks_layout">
+          <item>
+            <widget class="QLabel" name="minimum_angle_label">
+              <property name="toolTip">
+                <string>Minimum angle (radians)</string>
+              </property>
+              <property name="text">
+                <string>-3.14</string>
+              </property>
+            </widget>
+          </item>
+
+          <item>
+            <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+                <size>
+                  <width>40</width>
+                  <height>20</height>
+                </size>
+              </property>
+            </spacer>
+          </item>
+
+
+          <item>
+            <layout class="QVBoxLayout" name="current_angle_layout">
+
+              <item>
+                <widget class="QLabel" name="current_angle_label">
+                  <property name="text">
+                    <string>Current angle (radians)</string>
+                  </property>
+                </widget>
+              </item>
+
+              <item>
+                <layout class="QVBoxLayout" name="current_angle_box_layout">
+                  <property name="alignment">
+                    <enum>Qt::AlignCenter</enum>
+                  </property>
+
+                  <item>
+                    <widget class="QDoubleSpinBox" name="current_angle_box">
+                      <property name="maximumSize" stdset="0">
+                        <size>
+                          <width>150</width>
+                          <height>100</height>
+                        </size>
+                      </property>
+
+                      <property name="toolTip">
+                        <string>Current angle (radians)</string>
+                      </property>
+                      <property name="maximum">
+                        <double>3.14</double>
+                      </property>
+                      <property name="minimum">
+                        <double>-3.14</double>
+                      </property>
+                      <property name="singleStep">
+                        <double>0.10000000000000</double>
+                      </property>
+                      <property name="value">
+                        <double>0.000000000000000</double>
+                      </property>
+                    </widget>
+                  </item>
+
+                </layout>
+              </item>
+            
+            </layout>
+          </item>
+
+
+          <item>
+            <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+                <size>
+                  <width>40</width>
+                  <height>20</height>
+                </size>
+              </property>
+            </spacer>
+          </item>
+
+
+          <item>
+            <widget class="QLabel" name="maximum_angle_label">
+              <property name="toolTip">
+                <string>Maximum angle (radians)</string>
+              </property>
+              <property name="text">
+                <string>3.14</string>
+              </property>
+            </widget>
+          </item>
+
+
+        </layout>
+      </item>
+
+    </layout>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

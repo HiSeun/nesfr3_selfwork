@@ -1,0 +1,42 @@
+<launch>
+  <!-- rosbag play -->
+
+  <!-- Velodyne VLP-16 Driver
+  <node pkg="nodelet" type="nodelet" name="velodyne_nodelet_manager" args="manager" output="screen"/>
+  
+  <node pkg="nodelet" type="nodelet" name="driver_nodelet" args="load velodyne_driver/DriverNodelet velodyne_nodelet_manager" output="screen">
+    <param name="model" value="VLP16"/>
+    <param name="pcap" value=""/>
+    <param name="frame_id" value="velodyne"/>
+    <param name="rpm" value="600.0"/>
+  </node>
+  
+  <node pkg="nodelet" type="nodelet" name="cloud_nodelet" args="load velodyne_pointcloud/CloudNodelet velodyne_nodelet_manager" output="screen">
+    <param name="calibration" value="$(find object3d_detector)/config/vlp16.yaml"/>
+    <param name="min_range" value="0.4"/>
+    <param name="max_range" value="130.0"/>
+  </node>
+  -->
+  <arg name="robot_id" default="1"/>
+	<arg name="namespace" value="$(eval 'nesfr3/' + str(arg('robot_id')))"/>  
+  <arg name="use_sim_time" default="true"/>
+
+  <!-- FLOBOT 3D Object Detector -->
+  <group ns="$(arg namespace)">
+    <node pkg="object3d_detector" type="object3d_detector" name="object3d_detector" output="screen" respawn="false">
+      <param name="model_file_name" type="string" value="$(find object3d_detector)/libsvm/pedestrian.model"/>
+      <param name="range_file_name" type="string" value="$(find object3d_detector)/libsvm/pedestrian.range"/>
+      <param name="use_sim_time" value="$(arg use_sim_time)"/>
+    </node>
+    
+    <!-- NBellotto's Bayes People Tracker -->
+    <rosparam command="load" file="$(find object3d_detector)/config/object3d_detector.yaml"/>
+    <node pkg="bayes_people_tracker" type="bayes_people_tracker" name="bayes_people_tracker" output="screen" respawn="false">
+      <param name="target_frame" type="string" value="nesfr3/1/odom"/>
+      <param name="use_sim_time" value="$(arg use_sim_time)"/>
+    </node>
+  </group>
+  
+  <!-- ROS Visualization -->
+
+</launch>

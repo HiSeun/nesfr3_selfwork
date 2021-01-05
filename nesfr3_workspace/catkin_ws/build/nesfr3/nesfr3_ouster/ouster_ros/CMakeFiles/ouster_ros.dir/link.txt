@@ -1,0 +1,2 @@
+/usr/bin/ar qc /mnt/catkin_ws/devel/lib/libouster_ros.a CMakeFiles/ouster_ros.dir/src/os1_ros.cpp.o
+/usr/bin/ranlib /mnt/catkin_ws/devel/lib/libouster_ros.a

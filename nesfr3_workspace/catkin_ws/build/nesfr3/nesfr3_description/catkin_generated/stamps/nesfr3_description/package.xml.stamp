@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nesfr3_description</name>
+  <version>0.1.0</version>
+  <description>
+    3D models of the NESFR3 for simulation and visualization
+  </description>
+  <license>Apache 2.0</license>
+  <author email="lym7505@kaist.ac.kr">Yongalls</author>
+  <author email="batzorig@wom.ai">Batzorig Zorigoo</author>
+  <maintainer email="batzorig@wom.ai">Batzorig Zorigoo</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+  <!-- <depend>velodyne_description</depend> -->
+  <depend>ouster_description</depend>
+</package>

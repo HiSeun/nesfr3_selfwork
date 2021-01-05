@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nesfr3_msgs</name>
+  <version>0.0.1</version>
+  <description>
+    Custom messages for nesfr3 packages
+  </description>
+  <license>Apache 2.0</license>
+  <license>BSD</license>
+  <author email="lym7505@kaist.ac.kr">Yongalls</author>
+  <author email="batzorig@wom.ai">Batzorig Zorigoo</author>
+  <author email="cho@wom.ai">Seongyoon Cho</author>
+  <maintainer email="cho@wom.ai">Seongyoon Cho</maintainer>
+  <url type="repository">https://github.com/wom-ai/nesfr3</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <build_export_depend>message_runtime</build_export_depend>
+  <exec_depend>message_runtime</exec_depend>
+</package>

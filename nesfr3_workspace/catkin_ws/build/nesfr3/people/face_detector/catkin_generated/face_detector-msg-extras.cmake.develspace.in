@@ -1,0 +1,2 @@
+set(face_detector_MESSAGE_FILES "/mnt/catkin_ws/devel/share/face_detector/msg/FaceDetectorAction.msg;/mnt/catkin_ws/devel/share/face_detector/msg/FaceDetectorActionGoal.msg;/mnt/catkin_ws/devel/share/face_detector/msg/FaceDetectorActionResult.msg;/mnt/catkin_ws/devel/share/face_detector/msg/FaceDetectorActionFeedback.msg;/mnt/catkin_ws/devel/share/face_detector/msg/FaceDetectorGoal.msg;/mnt/catkin_ws/devel/share/face_detector/msg/FaceDetectorResult.msg;/mnt/catkin_ws/devel/share/face_detector/msg/FaceDetectorFeedback.msg")
+set(face_detector_SERVICE_FILES "")

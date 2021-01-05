@@ -1,0 +1,7 @@
+set(shot_controller_rqt_SETUP_PY_SETUP_MODULE "distutils.core")
+set(shot_controller_rqt_SETUP_PY_VERSION "0.0.0")
+set(shot_controller_rqt_SETUP_PY_SCRIPTS "")
+set(shot_controller_rqt_SETUP_PY_PACKAGES "rqt_mypkg")
+set(shot_controller_rqt_SETUP_PY_PACKAGE_DIRS "src/rqt_mypkg")
+set(shot_controller_rqt_SETUP_PY_MODULES "")
+set(shot_controller_rqt_SETUP_PY_MODULE_DIRS "")

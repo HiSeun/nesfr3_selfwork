@@ -1,0 +1,26 @@
+file(REMOVE_RECURSE
+  "/mnt/catkin_ws/devel/lib/libbayes_tracking.a"
+  "/mnt/catkin_ws/devel/lib/libbayes_tracking.pdb"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/CIFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/SIRFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/UDFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/UdU.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/bayesFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/bayesFltAlg.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/covFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/infFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/infRtFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/itrFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/matSup.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/BayesFilter/unsFlt.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/associationmatrix.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/ekfilter.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/models.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/pfilter.cpp.o"
+  "CMakeFiles/bayes_tracking.dir/src/bayes_tracking/ukfilter.cpp.o"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/bayes_tracking.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

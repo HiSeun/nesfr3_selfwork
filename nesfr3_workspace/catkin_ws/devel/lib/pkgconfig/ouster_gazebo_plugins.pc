@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: ouster_gazebo_plugins
+Description: Description of ouster_gazebo_plugins
+Version: 1.0.7
+Cflags: -I/mnt/catkin_ws/src/nesfr3/nesfr3_ouster/ouster_gazebo_plugins/include -I/usr/include -I/usr/include/gazebo-9 -I/usr/include/bullet -I/usr/include/simbody -I/usr/include/sdformat-6.2 -I/usr/include/ignition/math4 -I/usr/include/OGRE -I/usr/include/OGRE/Terrain -I/usr/include/OGRE/Paging -I/usr/include/ignition/transport4 -I/usr/include/ignition/msgs1 -I/usr/include/ignition/common1 -I/usr/include/ignition/fuel_tools1
+Libs: -L${prefix}/lib -lgazebo_ros_ouster_laser -lgazebo_ros_ouster_gpu_laser
+Requires: roscpp sensor_msgs gazebo_ros

@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wall -Wextra -rdynamic CMakeFiles/ouster_client_example.dir/src/main.cpp.o -o /mnt/catkin_ws/devel/lib/ouster_client/ouster_client_example  /mnt/catkin_ws/devel/lib/libouster_client.a -ljsoncpp 

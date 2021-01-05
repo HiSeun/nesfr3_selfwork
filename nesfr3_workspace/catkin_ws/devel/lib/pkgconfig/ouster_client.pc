@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: ouster_client
+Description: Description of ouster_client
+Version: 0.1.0
+Cflags: -I/mnt/catkin_ws/src/nesfr3/nesfr3_ouster/ouster_client/include -I/usr/include/jsoncpp
+Libs: -L${prefix}/lib -louster_client -ljsoncpp
+Requires: 

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="nesfr3_plugins">
+
+ <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <gazebo>
+    <plugin name="robot_move_controller_$(arg index)" filename="libplanar_move_plugin.so">
+      <robotNamespace>nesfr3/$(arg index)</robotNamespace>
+      <commandTopic>cmd_acc</commandTopic>
+      <odometryTopic>wheel_odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>500.0</odometryRate>
+      <publishOdometryTf>0</publishOdometryTf>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+
+  <gazebo>
+    <plugin name="gimbal_pos_controller_$(arg index)" filename="libgimbal_pos_plugin.so">
+      <robotNamespace>nesfr3/$(arg index)</robotNamespace>
+      <commandTopic>gimbal/cmd_pos</commandTopic>
+      <robotCameraFrame>camera_link</robotCameraFrame>
+      <cameraRotatorFrame>camera_rotator_link</cameraRotatorFrame>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor_$(arg index)" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin_$(arg index)">
+        <topicName>lidar/imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>100.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>nesfr3/$(arg index)/imu_link</frameName>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="camera_link">
+    <material>Gazebo/Red</material>
+    <sensor type="camera" name="main_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>640</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_zoom_controller_$(arg index)" filename="libcamera_zoom_plugin.so">
+        
+        <index> $(arg index) </index>
+
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0</updateRate>
+        <cameraName>main_camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="fisheye_camera_link">
+      <sensor name="fisheye_camera_$(arg index)" type="wideanglecamera">
+          <camera>
+              <horizontal_fov>${pi}</horizontal_fov>
+              <image>
+                  <width>600</width>
+                  <height>600</height>
+              </image>
+              <clip>
+                  <near>0.1</near>
+                  <far>100</far>
+              </clip>
+              <!-- A new section named `lens`. -->
+              <lens>
+                  <!-- type element is mandatory -->
+                  <type>custom</type>
+                  <!-- manually defined mapping function r = c1*f*fun(theta/c2 + c3) -->
+                  <!-- More information here: https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function -->
+                  <custom_function>
+                      <c1>7.5</c1>
+                      <!-- linear scaling -->
+                      <c2>2.0</c2>
+                      <!-- angle scaling -->
+                      <f>${1/7.5}</f>
+                      <!-- one more scaling parameter -->
+                      <fun>tan</fun>
+                      <!-- one of sin,tan,id -->
+                  </custom_function>
+                  <!-- if it is set to `true` your horizontal FOV will ramain as defined -->
+                  <!-- othervise it depends on lens type and custom function, if there is one -->
+                  <scale_to_hfov>false</scale_to_hfov>
+                  <!-- clip everything that is outside of this angle -->
+                  <cutoff_angle>${pi}</cutoff_angle>
+                  <!-- resolution of the cubemap texture, the highter it is - the sharper is your image -->
+                  <env_texture_size>2048</env_texture_size>
+              </lens>
+              <always_on>1</always_on>
+              <update_rate>30</update_rate>
+          </camera>
+          <plugin name="camera_controller_$(arg index)" filename="libfisheye_camera_plugin.so">
+              <cameraName>fisheye_camera</cameraName>
+              <imageTopicName>image_raw</imageTopicName>
+              <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+              <frameName>fisheye_camera_link</frameName>
+              <hackBaseline>0.07</hackBaseline>
+          </plugin>
+      </sensor>
+  </gazebo>
+
+</robot>

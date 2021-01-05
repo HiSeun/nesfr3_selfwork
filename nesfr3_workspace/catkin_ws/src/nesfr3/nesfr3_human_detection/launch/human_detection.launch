@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<launch>
+  <!-- webcam -->
+  <arg name="webcam" default="false"/>
+  <arg name="robot_id" default="1"/>
+	<arg name="namespace" value="$(eval 'nesfr3/' + str(arg('robot_id')))"/>
+
+  <!-- TensorRT Inference -->
+  <arg name="device" default="GeforceGTX1080Ti" />
+  <arg name="batch_size" default="8" />
+  <arg name="verbose" default="False" />
+  <arg name="model" default="ssd_mobilenet_v1_coco" />
+
+	<group ns="$(arg namespace)">
+    <node pkg="nesfr3_human_detection" type="trt_async_ros.py" name="image_converter" output="screen"
+              args="--usb --vid 0
+              --device $(arg device)
+              --batch_size $(arg batch_size)
+              --verbose $(arg verbose) 
+              --model $(arg model)
+              --robot_id $(arg robot_id)"/>
+  </group>
+</launch>

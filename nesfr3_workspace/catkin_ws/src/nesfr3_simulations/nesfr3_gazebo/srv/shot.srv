@@ -1,0 +1,10 @@
+int64 human_id
+float64 distance
+geometry_msgs/Vector3 direction
+string shot_size
+
+---
+
+sensor_msgs/Image shot
+
+

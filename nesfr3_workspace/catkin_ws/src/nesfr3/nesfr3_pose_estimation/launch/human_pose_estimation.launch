@@ -1,0 +1,9 @@
+<launch>
+  <arg name="robot_id" default="0"/>
+	<arg name="namespace" value="$(eval 'nesfr3/' + str(arg('robot_id')))"/>
+	<group ns="$(arg namespace)">
+    <node pkg="nesfr3_pose_estimation" name="nesfr3_pose_estimation" type="trt_pose_estimation.py" output="screen" args="$(arg robot_id)"/>
+  </group>
+</launch>
+
+

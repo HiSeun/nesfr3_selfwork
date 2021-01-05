@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<launch>
+    <arg name="robot_id" default="0"/>
+    <arg name="verbose" default="false"/>
+
+    <arg name="namespace" value="$(eval 'nesfr3/' + str(arg('robot_id')))"/>
+
+	<group ns="$(arg namespace)">
+    <node pkg="pcl_transformer" type="pcl_transformer_node" name="pcl_transformer_node" output="screen"
+              args="$(arg robot_id)
+                    $(arg verbose)"/>
+</group>    
+</launch>

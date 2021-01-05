@@ -1,0 +1,7 @@
+set(joy_listener_SETUP_PY_SETUP_MODULE "distutils.core")
+set(joy_listener_SETUP_PY_VERSION "0.2.6")
+set(joy_listener_SETUP_PY_SCRIPTS "")
+set(joy_listener_SETUP_PY_PACKAGES "joy_listener")
+set(joy_listener_SETUP_PY_PACKAGE_DIRS "src/joy_listener")
+set(joy_listener_SETUP_PY_MODULES "")
+set(joy_listener_SETUP_PY_MODULE_DIRS "")

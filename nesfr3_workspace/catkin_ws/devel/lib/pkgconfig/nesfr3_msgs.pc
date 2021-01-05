@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: nesfr3_msgs
+Description: Description of nesfr3_msgs
+Version: 0.0.1
+Cflags: -I/mnt/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: std_msgs geometry_msgs sensor_msgs message_runtime

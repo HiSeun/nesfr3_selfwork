@@ -1,0 +1,18 @@
+<library path="src">
+  <class name="ShotController" type="shot_controller_rqt.shot_controller.ShotController" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      A Python GUI plugin to use shot controller.
+    </description>
+    <qtgui>
+
+      <group>
+        <label>Robot Tools</label>
+      </group>
+
+      <label>Shot Controller</label>
+
+      <icon type="theme">system-help</icon>
+      <statustip>A Python GUI plugin to use shot controller.</statustip>
+    </qtgui>
+  </class>
+</library>

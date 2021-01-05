@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/install
+
+Name: nesfr3_teleop
+Description: Description of nesfr3_teleop
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -ldrive
+Requires: pcl_ros roscpp geometry_msgs std_msgs

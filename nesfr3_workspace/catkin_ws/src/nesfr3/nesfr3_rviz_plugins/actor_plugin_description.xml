@@ -1,0 +1,13 @@
+<library path="lib/libnesfr3_rviz_plugins">
+
+  <class name="nesfr3_rviz_plugins/Actor"
+         type="nesfr3_rviz_plugins::ActorDisplay"
+         base_class_type="rviz::Display">
+    <description>
+      Shows the skeleton of the actor, the direction the actor is headed to, and the actor's id.  
+    </description>
+    <message_type>nesfr3_msgs/Actor</message_type>
+  </class>
+
+
+</library>

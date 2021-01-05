@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+
+<robot name="nesfr3_simple" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="index" default="1"/>
+
+  <!-- include gazebo plugins -->
+  <xacro:include filename="$(find nesfr3_description)/urdf/nesfr3.gazebo" />
+  <xacro:include filename="$(find nesfr3_description)/urdf/materials.xacro" />
+
+  <xacro:arg name="base_width" default="0.26"/>
+  <xacro:arg name="base_length" default="0.371"/>
+  <xacro:arg name="base_height" default="0.058"/>
+  <xacro:property name="base_width" value="$(arg base_width)"/>
+  <xacro:property name="base_length" value="$(arg base_length)"/>
+  <xacro:property name="base_height" value="$(arg base_height)"/>
+
+  <xacro:arg name="wheel_radius" default="0.06"/>
+  <xacro:arg name="wheel_width" default="0.045"/>
+  <xacro:arg name="wheel_gap" default="0.025"/>
+  <xacro:arg name="wheel_setback_f" default="0.055"/> <!--원래거 -->
+  <xacro:arg name="wheel_setback_b" default="-0.005"/>
+  <xacro:arg name="wheel_height" default="-0.016"/>
+  <xacro:property name="wheel_radius" value="$(arg wheel_radius)"/>
+  <xacro:property name="wheel_width" value="$(arg wheel_width)"/>
+  <xacro:property name="wheel_gap" value="$(arg wheel_gap)"/>
+  <xacro:property name="wheel_setback_f" value="$(arg wheel_setback_f)"/> <!--원래거 -->
+  <xacro:property name="wheel_setback_b" value="$(arg wheel_setback_b)"/>
+  <xacro:property name="wheel_height" value="$(arg wheel_height)"/>
+
+  <xacro:arg name="gpu" default="true"/>
+  <xacro:arg name="lidar_height" default="0.8"/>
+  <xacro:property name="gpu" value="$(arg gpu)"/>
+  <xacro:property name="lidar_height" value="$(arg lidar_height)"/>
+
+<!--
+  <link name="world_frame"/> -->
+
+  <!--~~~~~~~~~~~~~~~~~~~~~~~~ ~ ROBOT BASE ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+    <!-- Make a box for robot base -->
+  <link name="base_link">
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+       <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+	       <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="7.032" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <!-- <inertia
+	      ixx="${0.083 * 15 * (base_width * base_width + base_height * base_height)}"
+	      ixy="0"
+	      ixz="0"
+	      iyy="${0.083 * 15 * (base_length * base_length + base_height * base_height)}"
+	      iyz="0"
+	      izz="${0.083 * 15 * (base_length * base_length + base_width * base_width)}" /> -->
+
+      <inertia ixx="0.041585" ixy="0" ixz="0" iyy="0.08263" iyz="0" izz="0.12027" />
+    </inertial>
+  </link>
+
+  <!-- <joint name="base_joint" type="fixed">
+       <parent link="world_frame" />
+       <child link="base_link" />
+       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint> -->
+
+
+
+  <xacro:include filename="$(find ouster_description)/urdf/OS1-64.urdf.xacro"/>
+  <xacro:OS1-64 parent="base_link" name="os1_sensor" topic_points="lidar/points" hz="40" samples="1024" min_range="0.1" max_range="125" lidar_link="lidar_link" imu_link="imu_link">
+      <origin xyz="0 0 ${lidar_height}" rpy="0 0 0" />
+  </xacro:OS1-64>
+
+<!-- <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <xacro:VLP-16 parent="base_link" name="velodyne" topic="lidar/points" hz="50" samples="1024" gpu="${gpu}" min_range="0.1" max_range="125">
+      <origin xyz="0 0 ${lidar_height}" rpy="0 0 0" />
+</xacro:VLP-16> -->
+
+
+  <link name="fl_link">
+      <visual>
+        <geometry>
+          <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+        </geometry>
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+        </geometry>
+	     <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.01</mu>
+              <mu2>0.01</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <inertial>
+        <mass value="0.617" />
+        <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        <inertia ixx="0.0006594" ixy="0" ixz="0" iyy="0.0006594" iyz="0" izz="0.0011106" />
+      </inertial>
+    </link>
+
+
+    <link name="fr_link">
+        <visual>
+          <geometry>
+            <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+          </geometry>
+          <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        </visual>
+        <collision>
+          <geometry>
+            <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+          </geometry>
+          <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.01</mu>
+              <mu2>0.01</mu2>
+            </ode>
+          </friction>
+        </surface>
+        </collision>
+        <inertial>
+          <mass value="0.617" />
+          <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+          <inertia ixx="0.0006594" ixy="0" ixz="0" iyy="0.0006594" iyz="0" izz="0.0011106" />
+        </inertial>
+      </link>
+
+
+      <link name="bl_link">
+          <visual>
+            <geometry>
+              <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+            </geometry>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+          </visual>
+          <collision>
+            <geometry>
+              <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+            </geometry>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.01</mu>
+              <mu2>0.01</mu2>
+            </ode>
+          </friction>
+        </surface>
+          </collision>
+          <inertial>
+            <mass value="0.617" />
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.0006594" ixy="0" ixz="0" iyy="0.0006594" iyz="0" izz="0.0011106" />
+          </inertial>
+        </link>
+
+
+        <link name="br_link">
+            <visual>
+              <geometry>
+                <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+              </geometry>
+              <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            </visual>
+            <collision>
+              <geometry>
+                <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+              </geometry>
+              <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.01</mu>
+              <mu2>0.01</mu2>
+            </ode>
+          </friction>
+        </surface>
+
+            </collision>
+            <inertial>
+              <mass value="0.617" />
+              <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+              <inertia ixx="0.0006594" ixy="0" ixz="0" iyy="0.0006594" iyz="0" izz="0.0011106" />
+            </inertial>
+          </link>
+
+
+  <!--~~~~~~~~~~~~~~~~~~~~~~~ ~ Lidar ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<!--   <link name="imu_link">
+  </link>
+
+  <joint name="imu_link_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="imu_link" />
+    <origin xyz="0.006253 -0.011775 0.007645" rpy="0 0 0" />
+  </joint> -->
+
+<!-- Main Camera -->
+
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	        <box size="0.2 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	        <box size="0.2 0.1 0.1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="1" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <!-- <inertia
+	      ixx="${0.083 * 0.33 * 0.002}"
+	      ixy="0"
+	      ixz="0"
+	      iyy="${0.083 * 0.33 * 0.005}"
+	      iyz="0"
+	      izz="${0.083 * 0.33 * 0.005}" /> -->
+      <inertia ixx="0.0016667" ixy="0" ixz="0" iyy="0.004167" iyz="0" izz="0.004167" />
+    </inertial>
+  </link>
+
+
+  <link name="camera_rotator_link">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.02"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.02"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.33" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <!-- <inertia
+	      ixx="${1 / 12 * 0.33 * (3 * 0.05 * 0.05 + 0.02 * 0.02)}"
+        ixy="0"
+        ixz="0"
+        iyy="${1 / 12 * 0.33 * (3 * 0.05 * 0.05 + 0.02 * 0.02)}"
+        iyz="0"
+        izz="${0.5 * 0.33 * 0.05 * 0.05}" /> -->
+
+      <inertia ixx="0.00021725" ixy="0" ixz="0" iyy="0.00021725" iyz="0" izz="0.0004125" />
+    </inertial>
+  </link>
+
+  <joint name="camera_joint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="camera_rotator_link"/>
+    <origin xyz="0 0 1.5" rpy="0 0 0"/>
+    <dynamics damping="0" friction="0.01"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.2" upper="2.2" effort="0.000001" velocity="0.01"/>
+  </joint>
+
+  <joint name="camera_joint_2" type="revolute">
+    <parent link="camera_rotator_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+    <dynamics damping="0" friction="0.01"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1" upper="1" effort="0.000001" velocity="0.01"/>
+  </joint>
+
+  <!-- Fisheye Camera -->
+  <link name="fisheye_camera_link">
+    <visual>
+        <geometry>
+            <cylinder length="0.1" radius="0.02"/>
+        </geometry>
+        <origin rpy="0 ${pi/2} 0" xyz="0 0 0"/>
+    </visual>
+
+    <collision>
+        <geometry>
+            <cylinder length="0.1" radius="0.02"/>
+        </geometry>
+        <origin rpy="0 ${pi/2} 0" xyz="0 0 0"/>
+    </collision>
+
+    <inertial>
+        <mass value="1" />
+        <origin rpy="0 ${pi/2} 0" xyz="0 0 0"/>
+        <!-- <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" /> -->
+        <inertia ixx="0.0009333" ixy="0" ixz="0" iyy="0.0009333" iyz="0" izz="0.0002" />
+    </inertial>
+  </link>
+
+  <joint name="fisheye_camera_joint" type="fixed">
+      <axis xyz="0 0 0" />
+      <origin xyz="0.0 0 0.25" rpy="0 ${-pi/2} ${-pi/2}"/>
+      <parent link="base_link"/>
+      <child link="fisheye_camera_link"/>
+  </joint>
+  <!-- Fisheye Camera -->
+
+  <joint name="fl_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="fl_link"/>
+      <origin rpy="0 0 0" xyz="${base_length/2 - wheel_setback_f} ${base_width/2 + wheel_gap} ${wheel_height}"/>
+      <axis xyz="0 0 0"/>
+  </joint>
+
+  <joint name="fr_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="fr_link"/>
+      <origin rpy="0 0 0" xyz="${base_length/2 - wheel_setback_f} ${-base_width/2 - wheel_gap} ${wheel_height}"/>
+      <axis xyz="0 0 0"/>
+  </joint>
+
+  <joint name="bl_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="bl_link"/>
+      <origin rpy="0 0 0" xyz="${-base_length/2 + wheel_setback_b} ${base_width/2 + wheel_gap} ${wheel_height}"/>
+      <axis xyz="0 0 0"/>
+  </joint>
+
+  <joint name="br_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="br_link"/>
+      <origin rpy="0 0 0" xyz="${-base_length/2 + wheel_setback_b} ${-base_width/2 - wheel_gap} ${wheel_height}"/>
+      <axis xyz="0 0 0"/>
+  </joint>
+
+</robot>

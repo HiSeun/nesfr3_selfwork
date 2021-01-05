@@ -1,0 +1,9 @@
+<launch>
+	<arg name="n" default="1"/>
+	<arg name="namespace" value="$(eval 'nesfr3/' + str(arg('n')) + '/fisheye')"/>
+    <include file="$(find spinnaker_camera_driver)/launch/camera.launch">
+        <arg name="camera_name" value="$(arg namespace)"/>
+        <arg name="camera_cfg" value="$(find nesfr3_bringup)/config/fisheye.yaml"/>
+    </include>
+    <node name="$(anon dynparam)" pkg="dynamic_reconfigure" type="dynparam" args="load $(arg namespace)/spinnaker_camera_nodelet $(find nesfr3_bringup)/config/camera_settings.yaml"/>
+</launch>

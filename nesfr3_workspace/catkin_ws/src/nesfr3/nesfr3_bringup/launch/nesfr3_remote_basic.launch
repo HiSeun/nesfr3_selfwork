@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="joy" type="joy_node" name="joy_node"/>
+  <node pkg="nesfr3_teleop" name="nesfr3_teleop_node" type="nesfr3_teleop_node"/>
+  <node pkg="nesfr3_mecanum_driver" name="nesfr3_mecanum_driver_node" type="nesfr3_mecanum_driver_node" output="screen"/>
+</launch>

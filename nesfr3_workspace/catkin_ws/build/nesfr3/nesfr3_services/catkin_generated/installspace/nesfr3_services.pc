@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/install
+
+Name: nesfr3_services
+Description: Description of nesfr3_services
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

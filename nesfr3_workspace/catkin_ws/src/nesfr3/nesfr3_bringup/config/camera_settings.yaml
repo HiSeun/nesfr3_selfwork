@@ -1,0 +1,6 @@
+auto_white_balance: Continuous
+image_format_color_coding: BayerRG8
+image_format_roi_width: 2000
+image_format_roi_height: 2000
+image_format_x_offset: 640
+image_format_y_offset: 100

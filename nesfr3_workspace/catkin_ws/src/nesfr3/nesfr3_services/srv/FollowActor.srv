@@ -1,0 +1,7 @@
+uint32 actor_id
+uint32 robot_id			
+float64 distance	
+float64 angle 		
+string shot_size
+uint32 use_gt
+---

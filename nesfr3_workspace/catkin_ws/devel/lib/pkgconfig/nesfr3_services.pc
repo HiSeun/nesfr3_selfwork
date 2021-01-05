@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: nesfr3_services
+Description: Description of nesfr3_services
+Version: 0.0.0
+Cflags: -I/mnt/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nesfr3</name>
+  <version>0.0.9</version>
+  <description>
+    ROS packages for the nesfr3 (meta package)
+  </description>
+  <license>Apache 2.0</license>
+  <license>BSD</license>
+  <author email="lym7505@kaist.ac.kr">Yongalls</author>
+  <author email="batzorig@wom.ai">Batzorig Zorigoo</author>
+  <author email="cho@wom.ai">Seongyoon Cho</author>
+  <maintainer email="cho@wom.ai">Seongyoon Cho</maintainer>
+  <url type="repository">https://github.com/wom-ai/nesfr3</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>nesfr3_description</exec_depend>
+  <exec_depend>nesfr3_detection</exec_depend>
+  <exec_depend>nesfr3_pose_estimation</exec_depend>
+  <exec_depend>nesfr3_teleop</exec_depend>
+  <exec_depend>nesfr3_msgs</exec_depend>
+  <exec_depend>nesfr3_rviz_plugins</exec_depend>
+  <exec_depend>nesfr3_services</exec_depend>
+  <exec_depend>nesfr3_rqt_plugins</exec_depend>
+
+  <export><metapackage/></export>
+</package>

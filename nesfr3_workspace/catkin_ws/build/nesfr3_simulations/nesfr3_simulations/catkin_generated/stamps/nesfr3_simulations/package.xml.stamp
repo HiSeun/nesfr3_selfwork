@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nesfr3_simulations</name>
+  <version>0.0.9</version>
+  <description>
+    ROS packages for the nesfr3_simulations (meta package)
+  </description>
+  <license>Apache 2.0</license>
+  <license>BSD</license>
+  <author email="lym7505@kaist.ac.kr">Yongalls</author>
+  <author email="batzorig@wom.ai">Batzorig Zorigoo</author>
+  <author email="cho@wom.ai">Seongyoon Cho</author>
+  <maintainer email="cho@wom.ai">Seongyoon Cho</maintainer>
+  <url type="repository">https://github.com/wom-ai/nesfr3_simulations</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>nesfr3_gazebo</exec_depend>
+  <export><metapackage/></export>
+</package>

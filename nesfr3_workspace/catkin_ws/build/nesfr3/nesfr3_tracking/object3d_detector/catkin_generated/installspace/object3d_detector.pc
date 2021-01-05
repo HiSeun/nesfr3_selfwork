@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/install
+
+Name: object3d_detector
+Description: Description of object3d_detector
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: bayes_tracking

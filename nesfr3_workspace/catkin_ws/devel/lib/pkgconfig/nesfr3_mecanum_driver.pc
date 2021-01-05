@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: nesfr3_mecanum_driver
+Description: Description of nesfr3_mecanum_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

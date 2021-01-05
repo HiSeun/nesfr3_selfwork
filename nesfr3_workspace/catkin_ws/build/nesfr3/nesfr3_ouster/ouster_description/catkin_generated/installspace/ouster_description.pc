@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/install
+
+Name: ouster_description
+Description: Description of ouster_description
+Version: 1.0.7
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,60 @@
+<launch>
+  <!-- there're race conditions between nodes, that's why they sometimes fail or modifications aren't reflected -->
+
+  <arg name="number_of_robots" default="1"/>
+  <arg name="use_joystick" default="false"/>
+
+  <!-- actors don't avoid robots if shot controller is used -->
+  <arg unless="$(arg use_joystick)" name="robots_to_ignore" value="$(arg number_of_robots)"/>
+  <arg     if="$(arg use_joystick)" name="robots_to_ignore" value="0"/> 
+  
+  <group if="$(arg use_joystick)">
+    <node pkg="joy" type="joy_node" name="joy_node">
+      <param name="autorepeat_rate" value="500" />
+      <param name="deadzone" value="0.05" />
+    </node>
+    <node pkg="nesfr3_teleop" name="nesfr3_teleop_node" type="nesfr3_teleop_node" output="screen">
+      <param name="safe_drive" type="int" value="1" />
+      <param name="robot_to_control" type="int" value="$(arg number_of_robots)" />
+    </node> 
+  </group>
+  
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="verbose" default="false"/>
+  <arg name="world_name" default="wom_office"/>
+  <arg name="world_path" value="$(find nesfr3_gazebo)/worlds/$(arg world_name).world"/>
+
+  <!-- set command arguments -->
+  <arg unless="$(arg paused)" name="command_arg1" value=""/>
+  <arg     if="$(arg paused)" name="command_arg1" value="-u"/>
+  <arg unless="$(arg headless)" name="command_arg2" value=""/>
+  <arg     if="$(arg headless)" name="command_arg2" value="-r"/>
+  <arg unless="$(arg verbose)" name="command_arg3" value=""/>
+  <arg     if="$(arg verbose)" name="command_arg3" value="--verbose"/>
+  <arg unless="$(arg debug)" name="script_type" value="gzserver"/>
+  <arg     if="$(arg debug)" name="script_type" value="debug"/>
+
+  <node name="xacro" pkg="xacro" type="xacro" args="-o $(arg world_path) $(arg world_path).xacro robots_to_ignore:=$(arg robots_to_ignore)" />
+
+  <!-- start gazebo server-->
+  <node name="gazebo" pkg="gazebo_ros" type="$(arg script_type)" respawn="false" output="screen"
+	args="$(arg command_arg1) $(arg command_arg2) $(arg command_arg3) $(arg world_path)" />
+
+  <!-- start gazebo client -->
+  <group if="$(arg gui)">
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/>
+  </group>
+
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+  <include file="$(find nesfr3_gazebo)/launch/robots.launch">
+    <arg name="n" value="$(arg number_of_robots)"/>
+    <arg name="use_joystick" value="$(arg use_joystick)"/>
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nesfr3_gazebo)/rviz/nesfr3.rviz"/>
+</launch>

@@ -1,0 +1,223 @@
+material face_1
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/1.jpg
+      }
+    }
+  }
+}
+
+material face_2
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/2.jpg
+      }
+    }
+  }
+}
+
+material face_3
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/3.jpg
+      }
+    }
+  }
+}
+
+material face_4
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/4.jpg
+      }
+    }
+  }
+}
+
+material face_5
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/5.jpg
+      }
+    }
+  }
+}
+
+material face_6
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/6.jpg
+      }
+    }
+  }
+}
+
+material face_7
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/7.jpg
+      }
+    }
+  }
+}
+
+material face_8
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/8.jpg
+      }
+    }
+  }
+}
+
+material face_9
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/9.jpg
+      }
+    }
+  }
+}
+
+material face_10
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/10.jpg
+      }
+    }
+  }
+}
+
+material face_11
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/11.jpg
+      }
+    }
+  }
+}
+
+material face_12
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/12.jpg
+      }
+    }
+  }
+}
+
+material face_13
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/13.jpg
+      }
+    }
+  }
+}
+
+material face_14
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/14.jpg
+      }
+    }
+  }
+}
+
+material face_15
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/15.jpg
+      }
+    }
+  }
+}
+
+material face_16
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ../faces/16.jpg
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+prefix=/mnt/catkin_ws/devel
+
+Name: bayes_people_tracker
+Description: Description of bayes_people_tracker
+Version: 1.1.8
+Cflags: -I/mnt/catkin_ws/devel/include -I/mnt/catkin_ws/src/nesfr3/nesfr3_tracking/bayes_people_tracker/include
+Libs: -L${prefix}/lib 
+Requires: bayes_tracking geometry_msgs roscpp std_msgs tf visualization_msgs nesfr3_msgs

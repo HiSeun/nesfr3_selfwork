@@ -1,0 +1,274 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+	<world name="default">
+		<include>
+			<uri>model://sun</uri>
+		</include>
+		<actor name="walk">
+			<pose>2 1 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor_walk_plugin" filename="libActorPlugin.so">
+				<target>3 -5 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor1">
+			<pose>0 1 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_1.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_1.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor1_plugin" filename="libActorPlugin.so">
+				<target>0 -5 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor2">
+			<pose>3 2 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_2.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_2.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor2_plugin" filename="libActorPlugin.so">
+				<target>3 -6 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+
+		<actor name="actor3">
+			<pose>4 2 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_3.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_3.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor2_plugin" filename="libActorPlugin.so">
+				<target>2 -1 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+
+		<actor name="actor4">
+			<pose>13 -8 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_4.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_4.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor4_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor5">
+			<pose>7 -3 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_5.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_5.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+            <plugin name="actor5_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor6">
+			<pose>-4.32 5.2 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_6.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_6.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor6_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor7">
+			<pose>-9.1 12 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_7.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_7.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor7_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor8">
+			<pose>-3 7.4 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_8.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_8.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor8_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor9">
+			<pose>8.1 -7.12 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_9.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_9.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor9_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor10">
+			<pose>-1.3 2.7 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_10.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_10.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor10_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+		<actor name="actor11">
+			<pose>12 -2.3 1.25 0 0 0</pose>
+			<skin>
+				<filename>/mnt/actor/actor_11.dae</filename>
+				<scale>1.0</scale>
+			</skin>
+			<animation name="walking">
+				<filename>/mnt/actor/actor_11.dae</filename>
+				<scale>1.000000</scale>
+				<interpolate_x>true</interpolate_x>
+			</animation>
+			<plugin name="actor11_plugin" filename="libActorPlugin.so">
+				<target>1 -2 1.2138</target>
+				<target_weight>1.15</target_weight>
+				<obstacle_weight>1.8</obstacle_weight>
+				<animation_factor>5.1</animation_factor>
+				<ignore_obstacles>
+					<model>cafe</model>
+					<model>ground_plane</model>
+				</ignore_obstacles>
+			</plugin>
+		</actor>
+
+	</world>
+</sdf>
